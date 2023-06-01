@@ -245,20 +245,20 @@ def main():
 
         overrun_and_message = f'{acc_overrun}{message}'
 
-        hash_ix = overrun_and_message.find('#')
-        if hash_ix > -1:
-          pre_hash = overrun_and_message[:hash_ix]
-          hash_onward = overrun_and_message[hash_ix:]
+        newline_ix = overrun_and_message.find('\n')
+        if newline_ix > -1:
+          pre_newline = overrun_and_message[:newline_ix]
+          newline_onward = overrun_and_message[newline_ix:]
 
-          if hash_onward.startswith('###'):
+          if newline_onward.startswith('\n\n###'):
             raise SufficientResponse()
-          if hash_onward.rstrip('###') == '':
-            # could potentially grow into a ###. we need to accumulate to see whether that's where the bot was going.
-            acc_overrun = hash_onward
-            response += pre_hash
-            print(pre_hash, end='', flush=True)
+          if newline_onward.rstrip('\n\n###') == '':
+            # could potentially grow into a \n\n###. Don't print it to the console just yet. we need to accumulate to see whether the bot's about to talk to itself.
+            acc_overrun = newline_onward
+            response += pre_newline
+            print(pre_newline, end='', flush=True)
             return
-          # hash_onward cannot grow into an Instruction/Response header, so this must be something else. flush everything we accumulated.
+          # newline_onward cannot grow into an Instruction/Response header, so this must be something else. flush everything we accumulated.
 
         response += overrun_and_message
         print(overrun_and_message, end='', flush=True)
