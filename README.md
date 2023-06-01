@@ -4,6 +4,9 @@
 
 Python script to demonstrate how to invoke models such as LLaMA from the command-line, with LoRA adapters.
 
+_Uses the [`huggyllama/llama-7b`](https://huggingface.co/huggyllama/llama-7b) LLaMA distribution by default, but if you have the official LLaMA weights and would prefer to convert them to Huggingface format yourself: I provide [instructions for doing so](https://gist.github.com/Birch-san/0b2d2f9bd997801005c1b5acbbc1dc0f)._  
+_Uses the [`alpaca-lora-7b`](https://huggingface.co/tloen/alpaca-lora-7b) LoRA by default, to adapt LLaMA for instruction-following._
+
 ## Setup
 
 All instructions are written assuming your command-line shell is bash.
